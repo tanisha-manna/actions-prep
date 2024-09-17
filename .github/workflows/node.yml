@@ -1,17 +1,27 @@
 name: Node.js CI
 
+env:
+  WF_VAR: "Workflow level variable"
+
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
     test:
-        name: my simple job name
-        runs-on: ubuntu-latest
-        steps:
-          - name: name of my step
-            id: stepId
-            run: echo "first step from first job"
-          - name: step with another shell
-            id: shellStep
-            shell: python
-            run: print("first step uses python shell")
+      env:
+        JOB_VAR: "Job level variable"
+      name: my job to test variable
+      runs-on: ubuntu-latest
+      steps:
+        - name: test variable
+          id: stepVariable
+          env:
+            STEP_VAR: "Step level variable"
+          run: |
+             echo ${{github.actor}}
+             echo $GITHUB_JOB
+             echo $WF_VAR
+             echo $JOB_VAR
+             echo $STEP_VAR
+             echo ${{ vars.CONF_VAR }}
+             echo ${{secrets.A_SECRET}}
