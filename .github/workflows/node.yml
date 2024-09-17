@@ -1,39 +1,17 @@
 name: Node.js CI
 
 on:
-    push:
-        branches:
-            - main
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
     test:
+        name: my simple job name
         runs-on: ubuntu-latest
-
         steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v4
-
-        - name: Install Dependencies
-          run: npm install
-
-        - name: Run Test Suite
-          run: npm test
-
-    start-server:
-        runs-on: ubuntu-latest
-        needs: test
-
-        steps: 
-        - name: Checkout Repository
-          uses: actions/checkout@v4
-
-        - name: Install Dependencies
-          run: npm install
-
-        - name: Start Server
-          run: node app.js &
-
-        - name: Conditional Step
-          run: echo "This step only runs on the main branch"
-          if: gitHub.ref == 'refs/heads/main'
+          - name: name of my step
+            id: stepId
+            run: echo "first step from first job"
+          - name: step with another shell
+            id: shellStep
+            shell: python
+            run: print("first step uses python shell")
