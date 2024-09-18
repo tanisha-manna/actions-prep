@@ -15,7 +15,7 @@ jobs:
                   name: my-artifact
             - name: Display structure of the downloaded artifact
               run: ls -R
-            - run: cat myArtifact.txt
+            - run: cat myArtifacts.txt
     upload-artifact: 
         name: job to upload an artifact
         runs-on: ubuntu-latest
