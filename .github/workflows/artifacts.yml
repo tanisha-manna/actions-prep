@@ -2,7 +2,7 @@ name: artifacts
 
 
 on:
-    push
+    workflow_dispatch: 
 
 jobs:
     download-artifact:
